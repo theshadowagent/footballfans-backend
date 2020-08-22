@@ -85,3 +85,9 @@ class FanPass(models.Model):
 
 admin.site.register(Event)
 admin.site.register(FanPass)
+admin.site.register(Match)
+admin.site.register(Club)
+admin.site.register(Tournament)
+admin.site.register(Ticket)
+admin.site.register(Season)
+admin.site.register(Tag)
