@@ -1,11 +1,21 @@
 from rest_framework import serializers
 
-from sochi_backend.event.models import Event, Club, Match
+from sochi_backend.event.models import Event, Club, Match, Tag
 from sochi_backend.users.models import UserEventUpvote
+from sochi_backend.users.serializers import UserSerializer
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = '__all__'
+        read_only_fields = 'customer'
 
 
 class EventSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField()
+    # author = UserSerializer()
+    tags = TagSerializer(many=True)
 
     @staticmethod
     def get_likes(obj):
@@ -24,6 +34,9 @@ class ClubSerializer(serializers.ModelSerializer):
 
 
 class MatchSerializer(serializers.ModelSerializer):
+    home_club = ClubSerializer()
+    guest_club = ClubSerializer()
+
     class Meta:
         model = Match
         fields = '__all__'
@@ -34,3 +47,6 @@ class TicketSerializer(serializers.ModelSerializer):
         model = Match
         fields = '__all__'
         read_only_fields = 'customer'
+
+
+
