@@ -15,6 +15,7 @@ class EventSerializer(serializers.ModelSerializer):
         model = Event
         fields = ('id', 'name', 'description', 'photo',
                   'likes', 'author', 'match', 'tags')
+        read_only_fields = ('likes', 'author', 'tags')
 
 
 class ClubSerializer(serializers.ModelSerializer):
@@ -27,3 +28,10 @@ class MatchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Match
         fields = '__all__'
+
+
+class TicketSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Match
+        fields = '__all__'
+        read_only_fields = 'customer'
