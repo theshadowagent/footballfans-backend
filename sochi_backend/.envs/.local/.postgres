@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=sochi_backend
+POSTGRES_USER=refgEyvzjMVKIleTFEMwRSszqCwGmgSh
+POSTGRES_PASSWORD=7vIssRT1d6TnfW0M6xZvH56bMNxfhgUSE9oqSjJCTT80qmC8Twm4Zwv1JurSSJAO
