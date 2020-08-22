@@ -1,15 +1,17 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib import admin
 
 
 class Event(models.Model):
-    name = models.CharField(max_length=128, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=128)
+    description = models.TextField()
     photo = models.CharField(max_length=255, blank=True, null=True)
     author = models.ForeignKey('users.User', on_delete=models.CASCADE,
                                blank=True, null=True)
     match = models.ForeignKey('Match', on_delete=models.CASCADE,
                               blank=True, null=True)
+    is_home_event = models.BooleanField(default=True)
     tags = models.ForeignKey('Tag',
                              on_delete=models.CASCADE,
                              blank=True, null=True)
@@ -79,3 +81,7 @@ class FanPass(models.Model):
     customer = models.ForeignKey('users.User', on_delete=models.CASCADE,
                                  blank=True, null=True)
     date_bought = models.DateTimeField(default=timezone.now, blank=True)
+
+
+admin.site.register(Event)
+admin.site.register(FanPass)
