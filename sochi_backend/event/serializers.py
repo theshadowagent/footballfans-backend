@@ -13,8 +13,7 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('id', 'name', 'description', 'photo',
-                  'likes', 'author', 'match', 'tags')
+        fields = '__all__'
         read_only_fields = ('likes', 'author', 'tags')
 
 
