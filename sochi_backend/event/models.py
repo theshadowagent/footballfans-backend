@@ -27,6 +27,16 @@ class Tag(models.Model):
 class Club(models.Model):
     name = models.CharField(max_length=128)
     logo_url = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=128, blank=True, null=True)
+
+
+class Tournament(models.Model):
+    TYPE_LEAGUE = "league"
+    TYPE_CUP = "cup"
+
+    name = models.CharField(max_length=128)
+    logo_url = models.CharField(max_length=255, blank=True, null=True)
+    type = models.CharField(max_length=20, default=TYPE_LEAGUE)
 
 
 class Match(models.Model):
@@ -36,12 +46,29 @@ class Match(models.Model):
     guest_club = models.ForeignKey('Club', on_delete=models.CASCADE,
                                    related_name='club_guest_matches',
                                    blank=True, null=True)
+    season = models.ForeignKey('Season', on_delete=models.CASCADE,
+                               blank=True, null=True)
+    stadium = models.CharField(max_length=256, blank=True, null=True)
+    tournament = models.ForeignKey('Tournament', on_delete=models.CASCADE,
+                                   blank=True, null=True)
     date_time = models.DateTimeField(default=timezone.now, blank=True)
+
+    class Meta:
+        ordering = ['-date_time']
+
+
+class Season(models.Model):
+    slug = models.CharField(max_length=10)
+    order = models.IntegerField(default=1)
+
+    class Meta:
+        ordering = ["-order"]
 
 
 class Ticket(models.Model):
     match = models.ForeignKey('Match', on_delete=models.CASCADE,
                               blank=True, null=True)
+    place = models.IntegerField(blank=True, null=True)
     customer = models.ForeignKey('users.User', on_delete=models.CASCADE,
                                  blank=True, null=True)
     date_bought = models.DateTimeField(default=timezone.now, blank=True)
