@@ -74,6 +74,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
+    'jet_django'
 ]
 
 LOCAL_APPS = [
@@ -286,3 +287,6 @@ REST_FRAMEWORK = {
 CORS_URLS_REGEX = r"^/api/.*$"
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+JET_PROJECT = 'sochi_2'
+JET_TOKEN = 'd9a27a22-ab7a-4ea0-98ec-949b0959f36b'

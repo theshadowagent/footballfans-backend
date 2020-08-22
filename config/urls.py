@@ -25,6 +25,7 @@ urlpatterns += [
     path("api/", include("sochi_backend.api.urls")),
     # DRF auth token
     path("auth-token/", obtain_auth_token),
+    path('jet_api/', include('jet_django.urls')),
 ]
 
 if settings.DEBUG:
