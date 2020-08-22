@@ -1,7 +1,11 @@
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 from django.db.models import CharField
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
+from sochi_backend.event.models import Event
 
 
 class User(AbstractUser):
@@ -19,3 +23,13 @@ class User(AbstractUser):
 
         """
         return reverse("users:detail", kwargs={"username": self.username})
+
+
+class UserEventUpvote(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_time = models.DateTimeField(default=timezone.now, blank=True)
+
+    class Meta:
+        ordering = ['-date_time']
+        unique_together = ('event', 'user')
