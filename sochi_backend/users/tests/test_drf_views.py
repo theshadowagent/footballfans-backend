@@ -1,7 +1,7 @@
 import pytest
 from django.test import RequestFactory
 
-from sochi_backend.users.api.views import UserViewSet
+from sochi_backend.api.views import UserViewSet
 from sochi_backend.users.models import User
 
 pytestmark = pytest.mark.django_db
