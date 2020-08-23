@@ -16,7 +16,11 @@ class EventSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField()
     has_liked = serializers.SerializerMethodField()
     # author = UserSerializer()
-    tags = TagSerializer(many=True)
+    tags = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_tags(obj):
+        return TagSerializer(obj.tags, many=True).data
 
     def get_has_liked(self, obj):
         return UserEventUpvote.objects.filter(user=self.context['request'].user,
