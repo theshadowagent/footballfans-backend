@@ -15,8 +15,12 @@ class TagSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField()
     has_liked = serializers.SerializerMethodField()
-    # author = UserSerializer()
+    # author = serializers.SerializerMethodField()
     tags = serializers.SerializerMethodField()
+
+    # def get_author(self, obj):
+    #     return UserSerializer(obj.author,
+    #                           context={'request': self.context['request']}).data
 
     @staticmethod
     def get_tags(obj):
