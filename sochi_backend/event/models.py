@@ -12,9 +12,6 @@ class Event(models.Model):
     match = models.ForeignKey('Match', on_delete=models.CASCADE,
                               blank=True, null=True)
     is_home_event = models.BooleanField(default=True)
-    tags = models.ForeignKey('Tag',
-                             on_delete=models.CASCADE,
-                             blank=True, null=True)
 
 
 class Tag(models.Model):
@@ -24,6 +21,13 @@ class Tag(models.Model):
     TYPE_NEUTRAL = 0
     TYPE_GOOD = 1
     TYPE_BAD = 2
+
+
+class EventTag(models.Model):
+    tag = models.ForeignKey('Tag', on_delete=models.CASCADE,
+                            blank=True, null=True)
+    event = models.ForeignKey('Event', on_delete=models.CASCADE,
+                              blank=True, null=True)
 
 
 class Club(models.Model):

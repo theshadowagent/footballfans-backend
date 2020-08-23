@@ -9,7 +9,6 @@ class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = '__all__'
-        read_only_fields = 'customer'
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -24,7 +23,7 @@ class EventSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_tags(obj):
-        return TagSerializer(obj.tags, many=True).data
+        return TagSerializer(Tag.objects.filter(eventtag__event=obj), many=True).data
 
     def get_has_liked(self, obj):
         return UserEventUpvote.objects.filter(user=self.context['request'].user,

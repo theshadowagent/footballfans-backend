@@ -288,5 +288,5 @@ CORS_URLS_REGEX = r"^/api/.*$"
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-JET_PROJECT = 'sochi_2'
-JET_TOKEN = 'd9a27a22-ab7a-4ea0-98ec-949b0959f36b'
+JET_PROJECT = 'sochi_3'
+JET_TOKEN = '01a03cb1-0b2b-4193-bfc4-0106e530cd30'
